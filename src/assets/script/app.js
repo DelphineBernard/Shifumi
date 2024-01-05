@@ -1,13 +1,10 @@
 const currentRound = document.querySelector(".current-round")
-// const playerPoints = document.querySelector(".players-points span")
-// const computerPoints = document.querySelector(".computer-points span")
 
 const leaf = document.querySelector("button.leaf")
 const rock = document.querySelector("button.rock")
 const scissors = document.querySelector("button.scissors")
 
-let winner = null
-
+let winner = ""
 
 
 const elements = ["Feuille", "Ciseaux", "Pierre"]
@@ -18,9 +15,6 @@ const randComputerElement = (elements) => {
     return computerElement
 }
 
-let computerElement = randComputerElement(elements)
-
-// console.log()
 
 // Compare 2 éléments pour déterminer le vainqueur
 const compareElements = (element1, element2) => {
@@ -28,13 +22,13 @@ const compareElements = (element1, element2) => {
     if (element1 === element2){
     winner = "Egalité"
     }
-    else if (element1 === "Ciseaux" && element2 === "Feuille" || element2 === "Feuille" && element1 === "Ciseaux"){
+    else if (element1 === "Ciseaux" && element2 === "Feuille" || element1 === "Feuille" && element2 === "Ciseaux"){
     winner = "Ciseaux"
     }
-    else if (element1 === "Pierre" && element2 === "Ciseaux" || element2 === "Pierre" && element1 === "Ciseaux"){
+    else if (element1 === "Pierre" && element2 === "Ciseaux" ||  element1 === "Ciseaux" && element2 === "Pierre"){
     winner = "Pierre"
     }
-    else if (element1 === "Feuille" && element2 === "Pierre" || element2 === "Pierre" && element1 === "Feuille") {
+    else if (element1 === "Feuille" && element2 === "Pierre" || element1 === "Pierre" && element2 === "Feuille") {
     winner = "Feuille"
     }
     return winner
@@ -85,7 +79,7 @@ const memorisePlayerChoice = () => {
 }
 //------------------------------------------------------
 
-let playerElement = memorisePlayerChoice()
+// let playerElement = memorisePlayerChoice()
 
 const buttonPlay = document.querySelector("button.play")
 
@@ -118,6 +112,7 @@ const checkPointsNumber = (pointsNumber, element) => {
         element.textContent = "points"
     }
 }
+//---------------------------------------------------------
 
 // Désigne le vainqueur et ajoute un point à son compteur
 const setWinner = (computerElement, playerElement) => {
@@ -141,26 +136,16 @@ const setWinner = (computerElement, playerElement) => {
     else {
         gameWinner = "Match nul !"
     }
+    console.log(compareElements(computerElement, playerElement))
     const textGame = document.createElement("p")
     textGame.textContent = `Vous jouez ${playerElement}, l'ordinateur joue ${computerElement}`
     const textResult = document.createElement("p")
-    currentRound.append(textGame, textResult)
+    currentRound.prepend(textGame, textResult)
     textResult.textContent = `> ${gameWinner} <`
     textGame.style.borderTop="0.1rem solid black"
-    textResult.style.textAlign="center"
+    textGame.style.paddingTop="1rem"
+    textResult.style.color="darkred"
     return gameWinner
 }
-// console.log(winner)
-// console.log(computerElement)
-// console.log(playerElement)
-// console.log(compareElements(computerElement, playerElement))
 
-// const showTextGame = () => {
-//     const textGame = `Vous jouez ${playerElement}, l'ordinateur joue ${computerElement}`
-
-// }
-
-// const addPointToWinner = () => {
-
-// }
 
