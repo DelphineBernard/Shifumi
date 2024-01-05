@@ -3,6 +3,7 @@ const currentRound = document.querySelector(".current-round")
 const leaf = document.querySelector("button.leaf")
 const rock = document.querySelector("button.rock")
 const scissors = document.querySelector("button.scissors")
+const well = document.querySelector("button.well")
 
 let winner = ""
 
@@ -31,6 +32,15 @@ const compareElements = (element1, element2) => {
     else if (element1 === "Feuille" && element2 === "Pierre" || element1 === "Pierre" && element2 === "Feuille") {
     winner = "Feuille"
     }
+    else if (element1 === "Feuille" && element2 === "Puits" || element1 === "Puits" && element2 === "Feuille") {
+    winner = "Feuille"
+    }
+    else if (element1 === "Puits" && element2 === "Pierre" || element1 === "Pierre" && element2 === "Puits") {
+    winner = "Puits"
+    }
+    else if (element1 === "Puits" && element2 === "Ciseaux" || element1 === "Ciseaux" && element2 === "Puits") {
+    winner = "Puits"
+    }
     return winner
 }
 //--------------------------------------------------
@@ -41,22 +51,29 @@ leaf.addEventListener("click", () => {
     leaf.classList.add("selected")
     rock.classList.remove("selected")
     scissors.classList.remove("selected")
-}
-)
+    well.classList.remove("selected")
+})
 
 rock.addEventListener("click", () => {
     rock.classList.add("selected")
     scissors.classList.remove("selected")
     leaf.classList.remove("selected")
-}
-)
+    well.classList.remove("selected")
+})
 
 scissors.addEventListener("click", () => {
     scissors.classList.add("selected")
     rock.classList.remove("selected")
     leaf.classList.remove("selected")
-}
-)
+    well.classList.remove("selected")
+})
+
+well.addEventListener("click", () => {
+    well.classList.add("selected")
+    scissors.classList.remove("selected")
+    rock.classList.remove("selected")
+    leaf.classList.remove("selected")
+})
 //--------------------------------------------------------
 
 
@@ -71,6 +88,9 @@ const memorisePlayerChoice = () => {
     }
     else if (scissors.classList.contains("selected")){
         playerChoice = "Ciseaux"
+    }
+    else if (well.classList.contains("selected")){
+        playerChoice = "Puits"
     }
     else {
         alert("Vous devez choisir un élément pour jouer")
@@ -147,5 +167,27 @@ const setWinner = (computerElement, playerElement) => {
     textResult.style.color="darkred"
     return gameWinner
 }
+
+// Ajout du bouton puits dans le jeu + modification du texte du bouton de triche lors du clic
+
+const buttonCheat = document.querySelector("button.cheat")
+const spanRockRules = document.querySelector(".rules span.rock")
+
+buttonCheat.addEventListener("click", () => {
+    well.classList.toggle("hidden")
+    if (!well.classList.contains("hidden")){
+        buttonCheat.textContent="Ne plus tricher"
+    }
+    else {
+        buttonCheat.textContent="Tricher"
+    }
+    const wellSpan = document.createElement("span")
+    wellSpan.classList.add("well")
+    wellSpan.textContent="puits, "
+    spanRockRules.prepend(wellSpan)
+})
+
+// Ajout du mot puits et des règles liées
+
 
 

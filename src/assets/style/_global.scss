@@ -50,12 +50,29 @@ p {
     flex-direction: column;
     align-items: center;
 
-    .play {
-        width: fit-content;
+    .play{
+        // width: fit-content;
         margin: 2rem;
         padding: 1rem 2rem;
         font-size: 1.2rem;
         border-radius: 1.5rem;
+
+        &:hover {
+            color: white;
+            background-color: rgba(43, 201, 82, 0.979);
+        }
+    }
+
+    .cheat {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 1.5rem;
+        // background-color: rgba(231, 13, 13, 0.979);
+
+        &:hover {
+            color: white;
+            background-color: rgba(231, 13, 13, 0.979);
+        }
     }
 }
 
@@ -103,7 +120,11 @@ h1{
 }
 
 .scissors {
-    color: rgba(255, 72, 0, 0.822);
+    color: rgba(173, 31, 12, 0.822);
+}
+
+.well {
+    color: rgb(52, 3, 117);
 }
 
 section {
@@ -138,4 +159,8 @@ span {
 footer {
     margin: 2rem;
     text-align: center;
+}
+
+.stats {
+    align-items: flex-start;
 }
