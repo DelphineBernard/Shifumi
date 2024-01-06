@@ -171,23 +171,37 @@ const setWinner = (computerElement, playerElement) => {
 // Ajout du bouton puits dans le jeu + modification du texte du bouton de triche lors du clic
 
 const buttonCheat = document.querySelector("button.cheat")
-const spanRockRules = document.querySelector(".rules span.rock")
+const elementsList = document.querySelector("p.elements-list")
+const liCheat = document.querySelectorAll("li.cheat")
 
 buttonCheat.addEventListener("click", () => {
     well.classList.toggle("hidden")
+
+    let wellSpan = document.createElement("span")
+    wellSpan.classList.add("well")
+    wellSpan.textContent="puits, "
+
     if (!well.classList.contains("hidden")){
         buttonCheat.textContent="Ne plus tricher"
+        elementsList.prepend(wellSpan)
+        // Montre tous les li concernant le puits
+        for (let li of liCheat){
+            li.classList.remove("hidden")
+        }
     }
     else {
         buttonCheat.textContent="Tricher"
+        let wellSpan = document.querySelector("span.well")
+        wellSpan.remove()
+        for (let li of liCheat){
+            li.classList.add("hidden")
+        }
     }
-    const wellSpan = document.createElement("span")
-    wellSpan.classList.add("well")
-    wellSpan.textContent="puits, "
-    spanRockRules.prepend(wellSpan)
 })
+
 
 // Ajout du mot puits et des règles liées
 
+// Création du span avec la classe et le texte "puits"
 
-
+// Création des règles liées au puits

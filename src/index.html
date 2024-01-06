@@ -18,10 +18,10 @@
             <div class="game">
                 <h1>Shifumi</h1>
                 <div class="elements">
-                    <button type="submit" class="leaf"><img src="./assets/style/img/leaf.png" alt="paper"></button>
-                    <button class="rock"><img src="./assets/style/img/rock.png" alt="rock"></button>
-                    <button class="scissors"><img src="./assets/style/img/scissors.png" alt="scissors"></button>
                     <button class="well hidden"><img src="./assets/style/img/well.png" alt="well"></button>
+                    <button type="submit" class="leaf"><img src="./assets/style/img/leaf.png" alt="feuille"></button>
+                    <button class="rock"><img src="./assets/style/img/rock.png" alt="pierre"></button>
+                    <button class="scissors"><img src="./assets/style/img/scissors.png" alt="ciseaux"></button>
                 </div>
                 <button class="play">Jouer</button>
                 <button class="cheat">Tricher</button>
@@ -30,13 +30,17 @@
                 <h2>Règles du jeu</h2>
                 <p>Vous jouez contre l'ordinateur.</p>
                 <p>La partie se déroule en 3 manches.</p>
-                <p>Vous avez le choix entre <span class="rock">pierre</span>, <span class="leaf">feuille</span> et <span class="scissors">ciseaux</span>.</p>
+                <p>Vous avez le choix entre : </p>
+                <p class="elements-list"><span class="rock">pierre</span>, <span class="leaf">feuille</span> ou <span class="scissors">ciseaux</span>.</p>
                 <p>Un point est donné à celui qui a choisi l'élément le plus fort, sachant que :</p>
               
-                <ul>
+                <ul class="rules-list">
+                    <li class="cheat hidden"><span class="well">puits</span> > <span class="rock">pierre</span> (la pierre tombe dans le puits)</li>
+                    <li class="cheat hidden"><span class="well">puits</span> > <span class="scissors">ciseaux</span> (les ciseaux tombent dans le puits)</li>
+                    <li class="cheat hidden"><span class="leaf">feuille</span> > <span class="well">puits</span> (la feuille recouvre le puits)</li>
+                    <li><span class="leaf">feuille</span> > <span class="rock">pierre</span> (la feuille enveloppe la pierre)</li>
                     <li><span class="scissors">ciseaux</span> > <span class="leaf">feuille</span> (les ciseaux coupent la feuille)</li>
                     <li><span class="rock">pierre</span> > <span class="scissors">ciseaux</span> (la pierre casse les ciseaux)</li>
-                    <li><span class="leaf">feuille</span> > <span class="rock">pierre</span> (la feuille enveloppe la pierre)</li>
                 </ul>
                 <p>Si l'ordinateur et le joueur ont choisi le même élément, aucun d'eux n'emporte de point.</p>
             </section>
@@ -64,7 +68,7 @@
             <h2></h2>
         </section>
     </div>
-    <footer>© 2024 - Delphine Bernard (from scratch) </footer>  
+    <footer>© 2024 - Delphine Bernard </footer>  
 </body>
 <script src="./assets/script/app.js/"></script>
 </html>
