@@ -95,11 +95,17 @@ h1{
     justify-content: center;
 
     button {
-        border: 0.4rem solid black;
+        border: 0.4rem solid rgb(47, 12, 87);
         border-radius: 2rem;
         padding: 0.5rem;
         background-color: white;
+
+    &:hover {
+        transform: scale(1.1);
+    }    
     }
+
+    
 
     img {
         width: 100%;
@@ -108,7 +114,7 @@ h1{
 }
 
 .selected {
-    border-color: red !important;
+    border-color: rgba(255, 0, 64, 0.774) !important;
 }
 
 .leaf {
@@ -146,7 +152,18 @@ span {
 
 .rules {
     width: 30%;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    p {
+        margin: 0;
+    }
 }
+
 
 .hidden {
     display: none;
@@ -163,4 +180,8 @@ footer {
 
 .stats {
     align-items: flex-start;
+}
+
+.alert {
+
 }

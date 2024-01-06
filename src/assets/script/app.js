@@ -192,6 +192,7 @@ buttonCheat.addEventListener("click", () => {
     else {
         buttonCheat.textContent="Tricher"
         let wellSpan = document.querySelector("span.well")
+        // Retire les éléments liés au puits dans les règles
         wellSpan.remove()
         for (let li of liCheat){
             li.classList.add("hidden")
@@ -199,9 +200,19 @@ buttonCheat.addEventListener("click", () => {
     }
 })
 
+const reduceButton = document.querySelector("button.reduce")
+const pInRulesSection = document.querySelectorAll("section.rules p") 
 
-// Ajout du mot puits et des règles liées
-
-// Création du span avec la classe et le texte "puits"
-
-// Création des règles liées au puits
+// Change le texte du bouton réduire au clic et réduit les régles du jeu
+reduceButton.addEventListener("click", () => {
+      
+    for (let p of pInRulesSection){
+        p.classList.toggle("hidden")  
+        if (!p.classList.contains("hidden")){
+        reduceButton.textContent="Réduire"
+        }
+    else {
+        reduceButton.textContent="En voir plus"
+        }
+    }
+})
