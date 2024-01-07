@@ -12,20 +12,11 @@
 </head>
 <body>
 
-    <div class="container">
+    <!-- <div class="container"> -->
+        <h1>Shifumi</h1>
 
         <div class="intro">
-            <div class="game">
-                <h1>Shifumi</h1>
-                <div class="elements">
-                    <button class="well hidden"><img src="./assets/style/img/well.png" alt="well"></button>
-                    <button type="submit" class="leaf"><img src="./assets/style/img/leaf.png" alt="feuille"></button>
-                    <button class="rock"><img src="./assets/style/img/rock.png" alt="pierre"></button>
-                    <button class="scissors"><img src="./assets/style/img/scissors.png" alt="ciseaux"></button>
-                </div>
-                <button class="play">Jouer</button>
-                <button class="cheat">Tricher</button>
-            </div>
+            
             <section class="rules">
                 <div>
                     <h2>Règles du jeu</h2>
@@ -34,7 +25,7 @@
                 <p>Vous jouez contre l'ordinateur.</p>
                 <p>La partie se déroule en 3 manches.</p>
                 <p>Vous avez le choix entre : </p>
-                <p class="elements-list"><span class="rock">pierre</span>, <span class="leaf">feuille</span> ou <span class="scissors">ciseaux</span>.</p>
+                <p class="elements-list"><span class="leaf">feuille</span>, <span class="rock">pierre</span> ou <span class="scissors">ciseaux</span>.</p>
                 <p>Un point est donné à celui qui a choisi l'élément le plus fort, sachant que :</p>
               
                 <ul class="rules-list">
@@ -42,35 +33,58 @@
                     <li class="cheat hidden"><span class="well">puits</span> > <span class="scissors">ciseaux</span><p>(les ciseaux tombent dans le puits)</p></li>
                     <li class="cheat hidden"><span class="leaf">feuille</span> > <span class="well">puits</span><p>(la feuille recouvre le puits)</p></li>
                     <li><span class="leaf">feuille</span> > <span class="rock">pierre</span><p>(la feuille enveloppe la pierre)</p></li>
-                    <li><span class="scissors">ciseaux</span> > <span class="leaf">feuille</span><p>(les ciseaux coupent la feuille)</p></li>
                     <li><span class="rock">pierre</span> > <span class="scissors">ciseaux</span><p>(la pierre casse les ciseaux)</p> </li>
+                    <li><span class="scissors">ciseaux</span> > <span class="leaf">feuille</span><p>(les ciseaux coupent la feuille)</p></li>
                 </ul>
                 <p>Si l'ordinateur et le joueur ont choisi le même élément, aucun d'eux n'emporte de point.</p>
             </section>
-        </div>
 
-        <div class="stats">
+            <div class="game">
+                <p class ="game-intro">Choisissez un élément pour jouer</p>
+                <div class="elements">
+                    <button class="well hidden"><img src="./assets/style/img/well.png" alt="well"></button>
+                    <button class="leaf"><img src="./assets/style/img/leaf.png" alt="feuille"></button>
+                    <button class="rock"><img src="./assets/style/img/rock.png" alt="pierre"></button>
+                    <button class="scissors"><img src="./assets/style/img/scissors.png" alt="ciseaux"></button>
+                </div>
+                <button class="play">Jouer</button>
+                <button class="cheat">Tricher</button>
 
-            <section class="player">
-                <h2>Vous</h2>
-                <span class="player-points">0</span><p>point</p>
-            </section>
+                <div class="stats">
+                <div>
+                <section class="player">
+                    <h2>Vous</h2>
+                    <div class="flex">
+                        <span class="player-points">0</span><p>point</p>
+                    </div>
+                </section>
+    
+                <section class="computer">
+                    <h2>Ordinateur</h2>
+                    <div class="flex">
+                        <span class="computer-points">0</span><p>point</p>
+                    </div>
+                </section>
+                </div>
 
-            <section class="current-game">
-                <h2>Manche en cours</h2>
-                <div class="current-round"></div>
-            </section>
+                </div>
+            </div>
 
-            <section class="computer">
-                <h2>L'ordinateur</h2>
-                <span class="computer-points">0</span><p>point</p>
-            </section>
+            
+
+                <section class="current-game">
+                    <h2>Partie en cours</h2>
+                    <div class="current-round"></div>
+                </section>
+            
+            
+
         </div>
 
         <section class="game-result hidden">
             <h2></h2>
         </section>
-    </div>
+    <!-- </div> -->
     <footer>© 2024 - Delphine Bernard </footer>  
 </body>
 <script src="./assets/script/app.js/"></script>

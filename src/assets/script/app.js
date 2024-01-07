@@ -108,12 +108,8 @@ buttonPlay.addEventListener("click", () => {
     let round = 0
     const computerElement = randComputerElement(elements)
     const playerElement = memorisePlayerChoice()
-    // console.log(computerElement)
-    // console.log(playerElement)
-    // console.log(compareElements(computerElement, playerElement))
     setWinner(computerElement, playerElement),
     round += 1
-    // return playerElement
 })
 //--------------------------------------------------------
 
@@ -133,11 +129,46 @@ const checkPointsNumber = (pointsNumber, element) => {
     }
 }
 //---------------------------------------------------------
+// const wellImg = document.querySelector("button.well img")
+const wellImg = document.querySelector("button.well img")
+const leafImg = document.querySelector("button.leaf img")
+const rockImg = document.querySelector("button.rock img")
+const scissorsImg = document.querySelector("button.scissors img")
+
+const wellIcon = wellImg.cloneNode()
+const leafIcon = leafImg.cloneNode()
+const rockIcon = rockImg.cloneNode()
+const scissorsIcon = scissorsImg.cloneNode()
+
+// const wellImg = document.createElement("img")
+// wellImg.src = "./assets/style/img/well.png"
+// const leafImg = document.createElement("img")
+// leafImg.src = "./assets/style/img/leaf.png"
+// const rockImg = document.createElement("img")
+// rockImg.src = "./assets/style/img/rock.png"
+// const scissorsImg = document.createElement("img")
+// scissorsImg.src = "./assets/style/img/scissors.png"
+
+// Clone et insère les images dans le déroulé du jeu
+const setElementImg = (element) => {
+    let img
+    if (element === "Puits"){
+        img = wellIcon.cloneNode()
+    }
+    else if (element === "Feuille"){
+        img = leafIcon.cloneNode()
+    }
+    else if (element === "Pierre"){
+        img = rockIcon.cloneNode()
+    }
+    else if (element === "Ciseaux"){
+        img = scissorsIcon.cloneNode()
+    }
+    return img
+}
 
 // Désigne le vainqueur et ajoute un point à son compteur
 const setWinner = (computerElement, playerElement) => {
-    // const computerElement = randComputerElement()
-    // const playerElement = memorisePlayerChoice()
     let gameWinner = ""
     const elementWinner = compareElements(computerElement, playerElement)
     if (elementWinner === computerElement){
@@ -156,15 +187,20 @@ const setWinner = (computerElement, playerElement) => {
     else {
         gameWinner = "Match nul !"
     }
-    console.log(compareElements(computerElement, playerElement))
+    let imgComputer = setElementImg(computerElement)
+    let imgPlayer = setElementImg(playerElement)
+
     const textGame = document.createElement("p")
     textGame.textContent = `Vous jouez ${playerElement}, l'ordinateur joue ${computerElement}`
     const textResult = document.createElement("p")
     currentRound.prepend(textGame, textResult)
-    textResult.textContent = `> ${gameWinner} <`
-    textGame.style.borderTop="0.1rem solid black"
-    textGame.style.paddingTop="1rem"
-    textResult.style.color="darkred"
+    textResult.textContent = ` > ${gameWinner} < `
+    textResult.prepend(imgPlayer)
+    imgPlayer.style.width="7%"
+    textResult.append(imgComputer)
+    imgComputer.style.width="7%"
+    textGame.classList.add("text")
+    textResult.classList.add("result")
     return gameWinner
 }
 
@@ -205,14 +241,23 @@ const pInRulesSection = document.querySelectorAll("section.rules p")
 
 // Change le texte du bouton réduire au clic et réduit les régles du jeu
 reduceButton.addEventListener("click", () => {
-      
+      reduceRules()
+})
+
+const reduceRules = () => {
     for (let p of pInRulesSection){
         p.classList.toggle("hidden")  
         if (!p.classList.contains("hidden")){
+            // p.classList.add("hidden") 
         reduceButton.textContent="Réduire"
         }
-    else {
+        else {
+            // p.classList.remove("hidden") 
         reduceButton.textContent="En voir plus"
         }
     }
-})
+}
+
+// const history = document.querySelector("div.history")
+
+

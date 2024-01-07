@@ -35,13 +35,28 @@ p {
 .container {
     display: flex;
     flex-direction: column;
+    
+}
+
+h1{
+    font-family: 'Acme', sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    margin: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    margin: 1rem 0;
 }
 
 .intro {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 3rem;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    column-gap: 2rem;
     
 }
 
@@ -50,12 +65,18 @@ p {
     flex-direction: column;
     align-items: center;
 
+    &-intro {
+        color: white;
+        font-size: 1.8rem;
+        width: fit-content;
+    }
+
     .play{
-        // width: fit-content;
         margin: 2rem;
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        border-radius: 1.5rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border: 0.1rem solid white;
+        border-radius: 1rem;
 
         &:hover {
             color: white;
@@ -64,9 +85,9 @@ p {
     }
 
     .cheat {
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-        border-radius: 1.5rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 1rem;
         // background-color: rgba(231, 13, 13, 0.979);
 
         &:hover {
@@ -81,89 +102,29 @@ p {
     justify-content: center;
 }
 
-h1{
-    font-family: 'Acme', sans-serif;
-    font-size: 4rem;
-    text-transform: uppercase;
-    text-align: center;
-    color: white;
-}
-
-.elements{
-    display: flex;
-    column-gap: 2rem;
-    justify-content: center;
-
-    button {
-        border: 0.4rem solid rgb(47, 12, 87);
-        border-radius: 2rem;
-        padding: 0.5rem;
-        background-color: white;
-
-    &:hover {
-        transform: scale(1.1);
-    }    
-    }
-
-    
-
-    img {
-        width: 100%;
-        height: 10vh;
-    }
-}
-
-.selected {
-    border-color: rgba(255, 0, 64, 0.774) !important;
-}
-
-.leaf {
-    color: green;
-}
-
-.rock {
-    color: rgb(32, 32, 32);
-}
-
-.scissors {
-    color: rgba(173, 31, 12, 0.822);
-}
-
-.well {
-    color: rgb(4, 66, 160);
-}
-
 section {
     border: 1px solid black;
     padding: 0 2rem;
     border-radius: 2rem;
     margin: 1rem;
-    background-color: rgba(255, 255, 255, 0.603);
+    background-color: rgba(255, 255, 255, 0.801);
 }
 
 .current-game {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+}
+
+.current-round {
+    display: flex;
+    flex-direction: column;
 }
 
 span {
     color: darkblue;
     font-weight: bold;
 }
-
-.rules {
-    width: 30%;
-
-    div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    p {
-        margin: 0;
-    }
-}
-
 
 .hidden {
     display: none;
@@ -173,15 +134,44 @@ span {
     justify-self: center;
 }
 
-footer {
-    margin: 2rem;
-    text-align: center;
-}
-
 .stats {
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+
+    div {
+        display: flex;
+    }
 }
 
 .alert {
 
+}
+
+.history {
+    justify-self: stretch;
+}
+
+.flex {
+    display: flex;
+    column-gap: 1rem;
+
+    p {
+        margin: 0;
+    }
+}
+
+.result {
+    color: darkred;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.text {
+    border-top: 0.1rem solid black;
+    padding: 0.5rem;
+    margin-bottom: 0 !important;
 }
