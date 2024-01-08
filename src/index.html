@@ -18,12 +18,11 @@
         <div class="intro">
             
             <section class="rules">
-                <div>
+                <div class="flex">
                     <h2>Règles du jeu</h2>
-                    <button class="reduce">Réduire</button>
+                    <button class="btn reduce">Réduire</button>
                 </div>
                 <p>Vous jouez contre l'ordinateur.</p>
-                <p>La partie se déroule en 3 manches.</p>
                 <p>Vous avez le choix entre : </p>
                 <p class="elements-list"><span class="leaf">feuille</span>, <span class="rock">pierre</span> ou <span class="scissors">ciseaux</span>.</p>
                 <p>Un point est donné à celui qui a choisi l'élément le plus fort, sachant que :</p>
@@ -50,32 +49,34 @@
                 <button class="play">Jouer</button>
                 <button class="cheat">Tricher</button>
 
-                <div class="stats">
-                <div>
-                <section class="player">
-                    <h2>Vous</h2>
-                    <div class="flex">
-                        <span class="player-points">0</span><p>point</p>
+                <section class="stats">
+                    <h2>Résultats</h2>
+                    <p class="stats-round">Manche n°</p>
+                    <div class="stats-points">
+                        <article class="player">
+                            <h3>Vous</h3>
+                            <div class="flex-column">
+                                <span class="player-points">0</span><p>point</p>
+                            </div>
+                        </article>
+        
+                        <article class="computer">
+                            <h3>Ordinateur</h3>
+                            <div class="flex-column">
+                                <span class="computer-points">0</span><p>point</p>
+                            </div>
+                        </article>
                     </div>
-                </section>
-    
-                <section class="computer">
-                    <h2>Ordinateur</h2>
-                    <div class="flex">
-                        <span class="computer-points">0</span><p>point</p>
-                    </div>
-                </section>
-                </div>
 
-                </div>
+                </section>
             </div>
 
             
 
-                <section class="current-game">
-                    <h2>Partie en cours</h2>
-                    <div class="current-round"></div>
-                </section>
+            <section class="current-game">
+                <h2>Partie en cours</h2>
+                <div class="current-round"></div>
+            </section>
             
             
 
@@ -86,6 +87,6 @@
         </section>
     <!-- </div> -->
     <footer>© 2024 - Delphine Bernard </footer>  
+    <script src="./assets/script/app.js/"></script>
 </body>
-<script src="./assets/script/app.js/"></script>
 </html>

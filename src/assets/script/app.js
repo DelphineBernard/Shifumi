@@ -7,17 +7,16 @@ const well = document.querySelector("button.well")
 
 let winner = ""
 
-
-const elements = ["Feuille", "Ciseaux", "Pierre"]
+const elementsArray = ["Feuille", "Ciseaux", "Pierre"]
 // Génère un nombre aléatoire de 0 à 2 pour désigner un des élément du tableau pour l'ordinateur
-const randComputerElement = (elements) => {
-    let rand = Math.floor(Math.random() * elements.length)
-    let computerElement = elements[rand]
+const randComputerElement = (elementsArray) => {
+    let rand = Math.floor(Math.random() * elementsArray.length)
+    let computerElement = elementsArray[rand]
     return computerElement
 }
 
 
-// Compare 2 éléments pour déterminer le vainqueur
+// Compare les 2 éléments pour déterminer le vainqueur
 const compareElements = (element1, element2) => {
     let winner
     if (element1 === element2){
@@ -76,6 +75,7 @@ well.addEventListener("click", () => {
 })
 //--------------------------------------------------------
 
+const elements = document.querySelector("div.elements")
 
 // Fonction qui memorise le choix du joueur
 const memorisePlayerChoice = () => {
@@ -92,24 +92,38 @@ const memorisePlayerChoice = () => {
     else if (well.classList.contains("selected")){
         playerChoice = "Puits"
     }
-    else {
-        alert("Vous devez choisir un élément pour jouer")
-    }
+    
     return playerChoice
 }
 //------------------------------------------------------
 
-// let playerElement = memorisePlayerChoice()
-
 const buttonPlay = document.querySelector("button.play")
+const statsRound = document.querySelector("p.stats-round")
+
+// Compte du nombre de manches jouées
+let round = 0
+const count = document.createElement("span")
+statsRound.append(count)
 
 // Au clic du bouton "jouer", mémorise l'élément du joueur
 buttonPlay.addEventListener("click", () => {
-    let round = 0
-    const computerElement = randComputerElement(elements)
+
+    const computerElement = randComputerElement(elementsArray)
     const playerElement = memorisePlayerChoice()
-    setWinner(computerElement, playerElement),
-    round += 1
+    // Message d'alerte si le joueur n'a pas sélectionné d'éléments
+    if (playerElement === undefined){
+        const alert = document.createElement("p")
+        alert.textContent = "Vous devez sélectionner un élément pour jouer."
+        alert.classList.add("alert")
+        buttonPlay.before(alert)
+    }
+    else {
+        setWinner(computerElement, playerElement),
+        // Mets à jour le compteur de manches
+        round += 1
+        count.textContent = round
+    }
+
 })
 //--------------------------------------------------------
 
@@ -135,34 +149,20 @@ const leafImg = document.querySelector("button.leaf img")
 const rockImg = document.querySelector("button.rock img")
 const scissorsImg = document.querySelector("button.scissors img")
 
-const wellIcon = wellImg.cloneNode()
-const leafIcon = leafImg.cloneNode()
-const rockIcon = rockImg.cloneNode()
-const scissorsIcon = scissorsImg.cloneNode()
-
-// const wellImg = document.createElement("img")
-// wellImg.src = "./assets/style/img/well.png"
-// const leafImg = document.createElement("img")
-// leafImg.src = "./assets/style/img/leaf.png"
-// const rockImg = document.createElement("img")
-// rockImg.src = "./assets/style/img/rock.png"
-// const scissorsImg = document.createElement("img")
-// scissorsImg.src = "./assets/style/img/scissors.png"
-
 // Clone et insère les images dans le déroulé du jeu
 const setElementImg = (element) => {
     let img
     if (element === "Puits"){
-        img = wellIcon.cloneNode()
+        img = wellImg.cloneNode()
     }
     else if (element === "Feuille"){
-        img = leafIcon.cloneNode()
+        img = leafImg.cloneNode()
     }
     else if (element === "Pierre"){
-        img = rockIcon.cloneNode()
+        img = rockImg.cloneNode()
     }
     else if (element === "Ciseaux"){
-        img = scissorsIcon.cloneNode()
+        img = scissorsImg.cloneNode()
     }
     return img
 }
@@ -248,16 +248,13 @@ const reduceRules = () => {
     for (let p of pInRulesSection){
         p.classList.toggle("hidden")  
         if (!p.classList.contains("hidden")){
-            // p.classList.add("hidden") 
         reduceButton.textContent="Réduire"
         }
         else {
-            // p.classList.remove("hidden") 
         reduceButton.textContent="En voir plus"
         }
     }
 }
 
-// const history = document.querySelector("div.history")
 
 

@@ -1,9 +1,10 @@
 .elements{
-    // width: fit-content;
     display: flex;
     column-gap: 1rem;
-    justify-content: space-between;
-    // align-items:flex-start;
+    row-gap: 1rem;
+    justify-content: center;
+    // align-items: center;
+    flex-wrap: wrap;
 
     button {
         border: 0.4rem solid rgb(47, 12, 87);
