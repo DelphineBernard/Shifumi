@@ -1,8 +1,9 @@
+@use './mixins';
+
 body {
     font-family: 'Acme', sans-serif;
     font-size: 16px;
     background-color: rgb(29, 10, 82);
-    // background-color: #0148FF;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%233B006F'/%3E%3Cstop offset='1' stop-color='%23FF6B41'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpattern id='b' width='4' height='4' patternUnits='userSpaceOnUse'%3E%3Ccircle fill='%230148FF' cx='2' cy='2' r='2'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23a)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23b)' fill-opacity='0.24'/%3E%3C/svg%3E");
     background-attachment: fixed;
     
@@ -32,11 +33,11 @@ p {
 	white-space: nowrap !important;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+// .container {
+//     display: flex;
+//     flex-direction: column;
     
-}
+// }
 
 h1{
     font-family: 'Acme', sans-serif;
@@ -44,7 +45,7 @@ h1{
     text-transform: uppercase;
     text-align: center;
     color: white;
-    margin: 1rem;
+    margin-top: 1rem;
 }
 
 h2{
@@ -61,11 +62,20 @@ h3{
     font-size: 1.2rem;
 }
 
-.intro {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    column-gap: 2rem; 
+.container { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include mixins.small{
+        display: flex;
+        flex-direction: column;
+    }
+
+    @include mixins.medium{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto 1fr;
+        row-gap: 1rem;
+    }
 }
 
 .game {
@@ -73,17 +83,17 @@ h3{
     flex-direction: column;
     align-items: center;
     row-gap: 1rem;
-    min-width: 30%;
+    padding-bottom: 2rem;
 
     &-intro {
         text-align: center;
         color: white;
         font-size: 1.8rem;
         width: fit-content;
+        padding-top: 2rem;
     }
 
     .play{
-        margin: 2rem;
         padding: 0.5rem 1.5rem;
         font-size: 1rem;
         border: 0.1rem solid white;
@@ -109,21 +119,34 @@ h3{
 
 section {
     border: 1px solid black;
-    padding: 0 2rem;
+    padding: 0 1rem;
     border-radius: 0.5rem;
     margin: 1rem;
     background-color: rgb(255, 255, 255);
     box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.623);
-    min-width: 30%;
     overflow-y: scroll;
-    max-height: 90vh;
     height: fit-content;
+    max-height: 82vh;
+}
+
+.main-part {
+    @include mixins.medium{
+        grid-column: 2;
+        grid-row: 1 / 4;
+    }
 }
 
 .current-game {
     display: flex;
     flex-direction: column;
     text-align: center;
+    max-height: 82vh;
+    height: fit-content;
+
+    @include mixins.medium{
+        grid-column: 1;
+        grid-row: 2 / 4;
+    }
 }
 
 .current-round {
@@ -144,11 +167,14 @@ span {
     justify-self: center;
 }
 
-.stats {
+.results {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: space-between;
+    text-align: center;
     height: auto;
+    margin: 1rem auto;
+    max-width: 80%;
 
     &-points {
         display: flex;
@@ -164,10 +190,7 @@ span {
     border-radius: 1rem;
     margin-top: 1rem;
     padding: 1rem;
-}
-
-.history {
-    justify-self: stretch;
+    transition: all 1s;
 }
 
 .flex {
@@ -190,6 +213,7 @@ span {
     color: darkred;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0.5rem 0;
 }
 

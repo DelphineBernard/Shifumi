@@ -1,10 +1,12 @@
+@use '../mixins';
+
 .rules {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     padding-bottom: 1rem;
+    max-height: fit-content;
 
-    .flex {
+    &-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -14,7 +16,13 @@
     p {
         margin: 0;
     } 
+
+    @include mixins.medium {
+        grid-column: 1;
+        grid-row: 1 / 2;
+    }
 }
+
 .rules-list {
         list-style-image: url("./img/puce.png");
         padding-left: 2rem;

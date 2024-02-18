@@ -45,7 +45,7 @@ const compareElements = (element1, element2) => {
 //--------------------------------------------------
 
 
-// Change l'élément sélectionné selon l'élément sur lequel clique l'utilisateur
+// Ajout de la classe selected sur l'élément sélectionné par l'utilisateur
 leaf.addEventListener("click", () => {
     leaf.classList.add("selected")
     rock.classList.remove("selected")
@@ -77,7 +77,7 @@ well.addEventListener("click", () => {
 
 const elements = document.querySelector("div.elements")
 
-// Fonction qui memorise le choix du joueur
+// Fonction qui memorise le choix du joueur (élément avec la classe "selected")
 const memorisePlayerChoice = () => {
     let playerChoice
     if (leaf.classList.contains("selected")){
@@ -98,32 +98,40 @@ const memorisePlayerChoice = () => {
 //------------------------------------------------------
 
 const buttonPlay = document.querySelector("button.play")
-const statsRound = document.querySelector("p.stats-round")
+const resultsRound = document.querySelector("p.results-round")
 
 // Compte du nombre de manches jouées
 let round = 0
 const count = document.createElement("span")
-statsRound.append(count)
+resultsRound.append(count)
+
 
 // Au clic du bouton "jouer", mémorise l'élément du joueur
 buttonPlay.addEventListener("click", () => {
-
     const computerElement = randComputerElement(elementsArray)
     const playerElement = memorisePlayerChoice()
     // Message d'alerte si le joueur n'a pas sélectionné d'éléments
+    const isAlert = document.querySelector(".alert")
     if (playerElement === undefined){
+        if (isAlert !== null){
+        isAlert.remove()
+        }
         const alert = document.createElement("p")
         alert.textContent = "Vous devez sélectionner un élément pour jouer."
         alert.classList.add("alert")
         buttonPlay.before(alert)
     }
     else {
+        if (isAlert !== null){
+            isAlert.remove()
+        }
+        reduceRules()
         setWinner(computerElement, playerElement),
         // Mets à jour le compteur de manches
         round += 1
         count.textContent = round
     }
-
+    
 })
 //--------------------------------------------------------
 
@@ -143,7 +151,6 @@ const checkPointsNumber = (pointsNumber, element) => {
     }
 }
 //---------------------------------------------------------
-// const wellImg = document.querySelector("button.well img")
 const wellImg = document.querySelector("button.well img")
 const leafImg = document.querySelector("button.leaf img")
 const rockImg = document.querySelector("button.rock img")
@@ -196,9 +203,11 @@ const setWinner = (computerElement, playerElement) => {
     currentRound.prepend(textGame, textResult)
     textResult.textContent = ` > ${gameWinner} < `
     textResult.prepend(imgPlayer)
-    imgPlayer.style.width="7%"
+    imgPlayer.style.maxWidth="2rem"
+    imgPlayer.style.maxHeight="2rem"
     textResult.append(imgComputer)
-    imgComputer.style.width="7%"
+    imgComputer.style.maxWidth="2rem"
+    imgComputer.style.maxHeight="2rem"
     textGame.classList.add("text")
     textResult.classList.add("result")
     return gameWinner
@@ -236,25 +245,34 @@ buttonCheat.addEventListener("click", () => {
     }
 })
 
+//---------------------------------------------------------
+
 const reduceButton = document.querySelector("button.reduce")
 const pInRulesSection = document.querySelectorAll("section.rules p") 
 
 // Change le texte du bouton réduire au clic et réduit les régles du jeu
 reduceButton.addEventListener("click", () => {
-      reduceRules()
+      manageRules()
 })
 
-const reduceRules = () => {
+const manageRules = () => {
     for (let p of pInRulesSection){
         p.classList.toggle("hidden")  
         if (!p.classList.contains("hidden")){
         reduceButton.textContent="Réduire"
         }
         else {
-        reduceButton.textContent="En voir plus"
+        reduceButton.textContent="Voir plus"
         }
     }
 }
 
-
-
+// Réduit automatiquement la partie règles lorsqu'on clique sur jouer
+const reduceRules = () => {
+    for (let p of pInRulesSection){
+        if (!p.classList.contains("hidden")){
+        p.classList.add("hidden")  
+        reduceButton.textContent="Voir plus"
+        }
+    }
+}

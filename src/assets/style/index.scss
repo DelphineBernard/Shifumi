@@ -1,6 +1,8 @@
 @use '../../../node_modules/reset-css/reset.css';
 @use './global';
 
+@use './mixins';
+
 @use './components/elements';
 @use './components/rules';
 @use './components/btn';
